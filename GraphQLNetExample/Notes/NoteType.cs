@@ -6,7 +6,7 @@ namespace GraphQLNetExample.Notes
         public NoteType()
         {
             Name = "Note";
-            Field(x => x.Id, type: typeof(IdGraphType)).Description("Note Id");
+            Field(x => x.Id ).Description("Note Id");
             Field(x => x.Message).Description("Note Message");
         }
 

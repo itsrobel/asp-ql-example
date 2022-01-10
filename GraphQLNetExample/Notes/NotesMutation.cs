@@ -16,13 +16,16 @@ namespace GraphQLNetExample.Notes
                 resolve: context =>
                 {
                     var message = context.GetArgument<string>("message");
-                    var notesContext = context.RequestServices.GetRequiredService<NotesContext>();
-                    var note = new Note
+                    var id = Guid.NewGuid().ToString().Replace("-", string.Empty);
+                    var DataContext = context.RequestServices.GetRequiredService<NotesContext>();
+                    Note note = new Note
                     {
+                        Id   = id,
                         Message = message,
                     };
-                    notesContext.Notes.Add(note);
-                    notesContext.SaveChanges();
+                    Console.WriteLine(note.Message);
+                    DataContext.Notes.Add(note);
+                    DataContext.SaveChanges();
                     return note;
                 }
             );
